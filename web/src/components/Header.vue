@@ -135,6 +135,7 @@ export default {
             const sshInfo = urlParams.get('sshInfo');
             console.log(sshInfo)
             if (sshInfo) {
+                this.$store.state.sshList = null;
                 const sshInfoObj = JSON.parse(window.atob(sshInfo))
                 sshInfoObj.host = sshInfoObj.ipaddress
                 this.$store.state.sshInfo = sshInfoObj
@@ -154,13 +155,13 @@ export default {
             this.cleanMode = true
         }
         this.checkAndSelectSSH();
-        if (this.sshList.length > 0) {
-            const latestSSH = this.sshList[this.sshList.length - 1]
-            this.$store.commit('SET_SSH', latestSSH)
-            if (latestSSH.password === undefined) {
-                this.$store.commit('SET_PASS', '')
-            }
-        }
+        // if (this.sshList.length > 0) {
+        //     const latestSSH = this.sshList[this.sshList.length - 1]
+        //     this.$store.commit('SET_SSH', latestSSH)
+        //     if (latestSSH.password === undefined) {
+        //         this.$store.commit('SET_PASS', '')
+        //     }
+        // }
     },
     computed: {
         ...mapState(['sshInfo']),
